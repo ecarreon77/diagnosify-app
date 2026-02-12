@@ -1,0 +1,159 @@
+.spider-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(2px);
+  z-index: 99999;
+  pointer-events: all;
+}
+
+.center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.container {
+  position: absolute;
+  margin-top: -325px;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 31.25em;
+  width: 21.87em;
+  margin: 0;
+}
+
+.rope {
+  height: 13.62em;
+  width: 0.15em;
+  background-color: #ffffff;
+  animation: swing 2s infinite ease-in-out;
+}
+
+@keyframes swing {
+  50% {
+    transform: translateY(-4em);
+  }
+}
+
+.legs {
+  height: 1.12em;
+  width: 7.5em;
+  box-shadow:
+    0 0 0 0.12em #140243,
+    0 0 0 1.06em #1b1676,
+    0 0 0 1.18em #140243;
+  top: 12.5em;
+  border-radius: 3.12em;
+}
+
+.boot-l,
+.boot-r {
+  height: 1.25em;
+  width: 2.5em;
+  background-color: #e32832;
+  position: absolute;
+  border: 0.12em solid #140243;
+  bottom: 1.12em;
+}
+
+.boot-l {
+  left: 1em;
+}
+
+.boot-r {
+  transform: rotateY(180deg);
+  left: 3.81em;
+}
+
+.costume {
+  height: 6.25em;
+  width: 5.62em;
+  background: linear-gradient(
+    to right,
+    #1b1676 20%,
+    #e32832 20%,
+    #e32832 80%,
+    #1b1676 80%
+  );
+  border: 0.12em solid #140243;
+  top: 14.68em;
+}
+
+.spider {
+  height: 1.87em;
+  width: 0.93em;
+  background-color: #140243;
+  border-radius: 45%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: calc(50% + 0.93em);
+  left: 50%;
+}
+
+.belt {
+  height: 0.43em;
+  width: 5.87em;
+  background-color: #e32832;
+  border: 0.12em solid #140243;
+  top: -0.12em;
+}
+
+.hand-r,
+.hand-l {
+  height: 8.12em;
+  background: linear-gradient(
+    #e32832 4.6em,
+    #140243 4.6em,
+    #140243 4.75em,
+    #1b1676 4.75em,
+    #1b1676 8.12em
+  );
+  width: 1.12em;
+  border: 0.12em solid #140243;
+  border-radius: 1.25em;
+  position: absolute;
+  transform-origin: bottom;
+  bottom: -0.12em;
+}
+
+.hand-r {
+  right: -0.75em;
+  transform: rotate(-22deg);
+}
+
+.hand-l {
+  left: -0.75em;
+  transform: rotate(22deg);
+}
+
+.mask {
+  height: 4.65em;
+  width: 4.06em;
+  background-color: #e32832;
+  border-radius: 50%;
+  border: 0.12em solid #140243;
+  top: 6.56em;
+}
+
+.eye-l,
+.eye-r {
+  height: 0.68em;
+  width: 1.37em;
+  background-color: #ffffff;
+  border-radius: 1.37em 1.37em 0 0;
+  border: 0.12em solid #140243;
+  position: absolute;
+  top: 2.1em;
+}
+
+.eye-l {
+  left: 0.3em;
+}
+
+.eye-r {
+  right: 0.3em;
+}
