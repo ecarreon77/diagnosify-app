@@ -25,9 +25,16 @@ export default function Register() {
       await registerUser(form);
       showSnackbar("Registered Successfully 🎉", "success");
     } catch (err) {
-      console.error(err);
-      const message = err.response?.data?.message || "Register failed";
-      showSnackbar(message, "error");
+      const status = err.response?.status;
+      const backendMessage = err.response?.data?.message;
+
+      if (status === 409) {
+        showSnackbar(backendMessage || "Email already registered", "error");
+      } else if (status === 400) {
+        showSnackbar(backendMessage || "Invalid input data", "error");
+      } else {
+        showSnackbar("Server error. Please try again later.", "error");
+      }
     }
   };
 
