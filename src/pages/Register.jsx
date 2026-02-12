@@ -23,7 +23,11 @@ export default function Register() {
       alert("Registered Successfully");
     } catch (err) {
       console.error(err);
-      alert("Register failed");
+
+      const message =
+        err.response?.data?.message || "Register failed. Please try again.";
+
+      alert(message);
     }
   };
 
@@ -67,12 +71,7 @@ export default function Register() {
             label="Contact Number"
             onChange={handleChange}
           />
-          <TextField
-            name="birthDate"
-            type="date"
-            InputLabelProps={{ shrink: true }}
-            onChange={handleChange}
-          />
+          <TextField name="birthDate" type="date" onChange={handleChange} />
           <TextField name="sex" label="Sex" onChange={handleChange} />
 
           <Button variant="contained" type="submit" fullWidth>
