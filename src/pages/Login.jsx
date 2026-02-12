@@ -2,24 +2,26 @@ import { useState } from "react";
 import { Container, TextField, Button, Box, Typography } from "@mui/material";
 import { loginUser } from "../api/authApi";
 import { useNavigate } from "react-router-dom";
-import Loading from "../components/Loading"; // 👈 import loader
+import Loading from "../components/Loading";
+import { useSnackbar } from "../context/SnackbarContext";
 
 export default function Login() {
   const [form, setForm] = useState({ email: "", password: "" });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const { showSnackbar } = useSnackbar();
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
-    setError(""); // clear error when typing
+    setError("");
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!form.email || !form.password) {
-      setError("Email and password are required");
+      showSnackbar("Email and password are required", "warning");
       return;
     }
 
@@ -29,10 +31,16 @@ export default function Login() {
       const res = await loginUser(form);
       localStorage.setItem("token", res.data.token);
 
-      navigate("/diagnosify"); // redirect
+      showSnackbar("Login successful 🎉", "success");
+
+      navigate("/diagnosify");
     } catch (err) {
       console.error(err);
-      setError("Invalid email or password");
+
+      const message =
+        err.response?.data?.message || "Invalid email or password";
+
+      showSnackbar(message, "error");
     } finally {
       setLoading(false);
     }
@@ -40,7 +48,6 @@ export default function Login() {
 
   return (
     <>
-      {/* FULL SCREEN LOADING */}
       {loading && <Loading />}
 
       <Container maxWidth="sm">

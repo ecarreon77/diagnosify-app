@@ -13,13 +13,15 @@ import {
   Stack,
 } from "@mui/material";
 import { checkHealth } from "../api/diagnosifyApi";
-import Loading from "../components/Loading"; // 👈 import it
+import Loading from "../components/Loading";
+import { useSnackbar } from "../context/SnackbarContext";
 
 export default function Diagnosify() {
   const [symptomsInput, setSymptomsInput] = useState("");
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const { showSnackbar } = useSnackbar();
 
   const handleInputChange = (e) => {
     const value = e.target.value;
@@ -33,16 +35,23 @@ export default function Diagnosify() {
   };
 
   const handleCheck = async () => {
-    if (!symptomsInput.trim() || error) return;
+    if (!symptomsInput.trim() || error) {
+      showSnackbar("Please enter symptoms first", "warning");
+      return;
+    }
 
     try {
       setLoading(true);
       const symptoms = symptomsInput.split(",").map((s) => s.trim());
       const res = await checkHealth({ symptoms });
       setResult(res.data);
+      showSnackbar("Health analysis completed ✅", "success");
     } catch (err) {
       console.error(err);
-      alert("Unauthorized or server error");
+      const message =
+        err.response?.data?.message || "Unauthorized or server error";
+
+      showSnackbar(message, "error");
     } finally {
       setLoading(false);
     }
