@@ -47,7 +47,6 @@ export default function Diagnosify() {
       setResult(res.data);
       showSnackbar("Health analysis completed ✅", "success");
     } catch (err) {
-      console.error(err);
       const message =
         err.response?.data?.message || "Unauthorized or server error";
 

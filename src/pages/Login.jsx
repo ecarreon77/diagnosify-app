@@ -35,12 +35,19 @@ export default function Login() {
 
       navigate("/diagnosify");
     } catch (err) {
-      console.error(err);
+      const status = err.response?.status;
+      const backendMessage = err.response?.data?.message;
 
-      const message =
-        err.response?.data?.message || "Invalid email or password";
-
-      showSnackbar(message, "error");
+      if (status === 403) {
+        showSnackbar(
+          "Account not activated. Please check your email.",
+          "error",
+        );
+      } else if (status === 500) {
+        showSnackbar("Server error. Please try again later.", "error");
+      } else {
+        showSnackbar(backendMessage || "Login failed", "error");
+      }
     } finally {
       setLoading(false);
     }
