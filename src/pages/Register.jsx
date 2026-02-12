@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Container, TextField, Button, Box, Typography } from "@mui/material";
 import { registerUser } from "../api/authApi";
+import { useSnackbar } from "../context/SnackbarContext";
 
 export default function Register() {
   const [form, setForm] = useState({
@@ -13,6 +14,8 @@ export default function Register() {
     sex: "",
   });
 
+  const { showSnackbar } = useSnackbar();
+
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
 
@@ -20,14 +23,11 @@ export default function Register() {
     e.preventDefault();
     try {
       await registerUser(form);
-      alert("Registered Successfully");
+      showSnackbar("Registered Successfully 🎉", "success");
     } catch (err) {
       console.error(err);
-
-      const message =
-        err.response?.data?.message || "Register failed. Please try again.";
-
-      alert(message);
+      const message = err.response?.data?.message || "Register failed";
+      showSnackbar(message, "error");
     }
   };
 
