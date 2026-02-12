@@ -2,29 +2,46 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Diagnosify from "../pages/Diagnosify";
-import PrivateRoute from "./PrivateRoute";
-import Layout from "../layout/Layout";
+import Navbar from "../components/Navbar";
+
+import ProtectedRoute from "./ProtectedRoute";
+import PublicRoute from "./PublicRoute";
 
 export default function AppRoutes() {
   return (
     <BrowserRouter>
-      <Routes>
-        {/* Layout wrapper */}
-        <Route element={<Layout />}>
-          {/* Public */}
-          <Route path="/" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+      <Navbar />
 
-          {/* Protected */}
-          <Route
-            path="/diagnosify"
-            element={
-              <PrivateRoute>
-                <Diagnosify />
-              </PrivateRoute>
-            }
-          />
-        </Route>
+      <Routes>
+        {/* LOGIN PAGE (BLOCK WHEN LOGGED IN) */}
+        <Route
+          path="/"
+          element={
+            <PublicRoute>
+              <Login />
+            </PublicRoute>
+          }
+        />
+
+        {/* REGISTER PAGE (BLOCK WHEN LOGGED IN) */}
+        <Route
+          path="/register"
+          element={
+            <PublicRoute>
+              <Register />
+            </PublicRoute>
+          }
+        />
+
+        {/* DIAGNOSIFY PAGE (PROTECTED) */}
+        <Route
+          path="/diagnosify"
+          element={
+            <ProtectedRoute>
+              <Diagnosify />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
