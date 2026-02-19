@@ -15,6 +15,7 @@ import {
 import { checkHealth } from "../api/diagnosifyApi";
 import Loading from "../components/Loading";
 import { useSnackbar } from "../context/SnackbarContext";
+import { getUserRole } from "../api/auth";
 
 export default function Diagnosify() {
   const [symptomsInput, setSymptomsInput] = useState("");
@@ -22,6 +23,9 @@ export default function Diagnosify() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const { showSnackbar } = useSnackbar();
+
+  const role = getUserRole();
+  console.log(role);
 
   const handleInputChange = (e) => {
     const value = e.target.value;

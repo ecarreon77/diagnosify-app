@@ -7,6 +7,8 @@ import Navbar from "../components/Navbar";
 import ProtectedRoute from "./ProtectedRoute";
 import PublicRoute from "./PublicRoute";
 import ChangePassword from "../pages/ChangePassword";
+import AdminDashboard from "../pages/admin/AdminDashboard";
+import DoctorDashboard from "../pages/doctor/DoctorDashboard";
 
 export default function AppRoutes() {
   return (
@@ -38,8 +40,26 @@ export default function AppRoutes() {
         <Route
           path="/diagnosify"
           element={
-            <ProtectedRoute>
+            <ProtectedRoute allowedRoles={["USER"]}>
               <Diagnosify />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/admin-dashboard"
+          element={
+            <ProtectedRoute allowedRoles={["ADMIN"]}>
+              <AdminDashboard />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/doctor-dashboard"
+          element={
+            <ProtectedRoute allowedRoles={["DOCTOR"]}>
+              <DoctorDashboard />
             </ProtectedRoute>
           }
         />
@@ -47,7 +67,7 @@ export default function AppRoutes() {
         <Route
           path="/change-password"
           element={
-            <ProtectedRoute>
+            <ProtectedRoute allowedRoles={["USER", "ADMIN", "DOCTOR"]}>
               <ChangePassword />
             </ProtectedRoute>
           }
