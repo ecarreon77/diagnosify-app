@@ -6,6 +6,7 @@ import Navbar from "../components/Navbar";
 
 import ProtectedRoute from "./ProtectedRoute";
 import PublicRoute from "./PublicRoute";
+import ChangePassword from "../pages/ChangePassword";
 
 export default function AppRoutes() {
   return (
@@ -39,6 +40,15 @@ export default function AppRoutes() {
           element={
             <ProtectedRoute>
               <Diagnosify />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/change-password"
+          element={
+            <ProtectedRoute>
+              <ChangePassword />
             </ProtectedRoute>
           }
         />

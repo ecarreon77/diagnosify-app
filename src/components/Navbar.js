@@ -1,4 +1,12 @@
-import { AppBar, Toolbar, Typography, Button } from "@mui/material";
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Button,
+  Menu,
+  MenuItem,
+} from "@mui/material";
+import AccountCircle from "@mui/icons-material/AccountCircle";
 import { logoutUser } from "../api/authApi";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useSnackbar } from "../context/SnackbarContext";
@@ -13,10 +21,20 @@ export default function Navbar() {
   const { showSnackbar } = useSnackbar();
   const [loading, setLoading] = useState(false);
 
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+
+  const handleMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+
   const handleLogout = async () => {
     try {
       setLoading(true);
-
       await logoutUser();
       showSnackbar("Logged out successfully 👋", "success");
     } catch (err) {
@@ -25,8 +43,14 @@ export default function Navbar() {
     } finally {
       localStorage.removeItem("token");
       setLoading(false);
+      handleMenuClose();
       navigate("/");
     }
+  };
+
+  const handleChangePassword = () => {
+    handleMenuClose();
+    navigate("/change-password");
   };
 
   return (
@@ -42,7 +66,7 @@ export default function Navbar() {
             🧠 Diagnosify
           </Typography>
 
-          {/* If NOT logged in */}
+          {/* Not logged in */}
           {!token && location.pathname === "/" && (
             <Button color="inherit" onClick={() => navigate("/register")}>
               Register
@@ -55,11 +79,24 @@ export default function Navbar() {
             </Button>
           )}
 
-          {/* If logged in */}
+          {/* Logged in */}
           {token && (
-            <Button color="inherit" onClick={handleLogout} disabled={loading}>
-              Logout
-            </Button>
+            <>
+              <Button
+                color="inherit"
+                startIcon={<AccountCircle />}
+                onClick={handleMenuOpen}
+              >
+                Account
+              </Button>
+
+              <Menu anchorEl={anchorEl} open={open} onClose={handleMenuClose}>
+                <MenuItem onClick={handleChangePassword}>
+                  Change Password
+                </MenuItem>
+                <MenuItem onClick={handleLogout}>Logout</MenuItem>
+              </Menu>
+            </>
           )}
         </Toolbar>
       </AppBar>

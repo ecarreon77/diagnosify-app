@@ -33,5 +33,7 @@ authApi.interceptors.response.use(
 export const registerUser = (data) => authApi.post("/auth/register", data);
 export const loginUser = (data) => authApi.post("/auth/login", data);
 export const logoutUser = () => authApi.post("/auth/logout");
+export const changePassword = (data) =>
+  authApi.post("/auth/change-password", data);
 
 export default authApi;
