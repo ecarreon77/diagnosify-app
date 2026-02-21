@@ -7,6 +7,7 @@ import {
   Button,
   Grid,
   MenuItem,
+  Box,
 } from "@mui/material";
 import { useSnackbar } from "../../context/SnackbarContext";
 import { registerDoctorUser } from "../../api/registerDoctor";
@@ -66,102 +67,90 @@ const AdminDashboard = () => {
   };
 
   return (
-    <Container maxWidth="md" sx={{ mt: 5 }}>
-      <Paper elevation={3} sx={{ p: 4 }}>
-        <Typography variant="h5" gutterBottom>
+    <Container maxWidth="sm">
+      <Box sx={{ mt: 5, p: 4, boxShadow: 3, borderRadius: 2 }}>
+        <Typography variant="h5" textAlign="center" gutterBottom>
           Add Doctor
         </Typography>
 
-        <form onSubmit={handleSubmit}>
-          <Grid container spacing={3}>
-            <Grid item xs={12} md={4}>
-              <TextField
-                fullWidth
-                label="First Name"
-                name="firstName"
-                value={form.firstName}
-                onChange={handleChange}
-                required
-              />
-            </Grid>
+        <Box
+          component="form"
+          onSubmit={handleSubmit}
+          sx={{ display: "grid", gap: 2, mt: 2 }}
+        >
+          <TextField
+            fullWidth
+            label="First Name"
+            name="firstName"
+            value={form.firstName}
+            onChange={handleChange}
+            required
+          />
 
-            <Grid item xs={12} md={4}>
-              <TextField
-                fullWidth
-                label="Last Name"
-                name="lastName"
-                value={form.lastName}
-                onChange={handleChange}
-                required
-              />
-            </Grid>
+          <TextField
+            fullWidth
+            label="Last Name"
+            name="lastName"
+            value={form.lastName}
+            onChange={handleChange}
+            required
+          />
 
-            <Grid item xs={12} md={4}>
-              <TextField
-                fullWidth
-                label="Email"
-                name="email"
-                type="email"
-                value={form.email}
-                onChange={handleChange}
-                required
-              />
-            </Grid>
+          <TextField
+            fullWidth
+            label="Email"
+            name="email"
+            type="email"
+            value={form.email}
+            onChange={handleChange}
+            required
+          />
 
-            <Grid item xs={12} md={6}>
-              <TextField
-                fullWidth
-                label="Contact Number"
-                name="contactNumber"
-                value={form.contactNumber}
-                onChange={handleChange}
-                required
-              />
-            </Grid>
+          <TextField
+            fullWidth
+            label="Contact Number"
+            name="contactNumber"
+            value={form.contactNumber}
+            onChange={handleChange}
+            required
+          />
 
-            <Grid item xs={12} md={6}>
-              <TextField
-                fullWidth
-                label="Birth Date"
-                name="birthDate"
-                type="date"
-                InputLabelProps={{ shrink: true }}
-                value={form.birthDate}
-                onChange={handleChange}
-                helperText="Please select date"
-                required
-              />
-            </Grid>
+          <TextField
+            fullWidth
+            label="Birth Date"
+            name="birthDate"
+            type="date"
+            InputLabelProps={{ shrink: true }}
+            value={form.birthDate}
+            onChange={handleChange}
+            helperText="Please select date"
+            required
+          />
 
-            <Grid item xs={12} md={6}>
-              <TextField
-                select
-                fullWidth
-                label="Gender"
-                name="sex"
-                value={form.sex}
-                onChange={handleChange}
-                helperText="Please select gender"
-                required
-              >
-                <MenuItem value="MALE">Male</MenuItem>
-                <MenuItem value="FEMALE">Female</MenuItem>
-              </TextField>
-            </Grid>
+          <TextField
+            fullWidth
+            select
+            label="Gender"
+            name="sex"
+            value={form.sex}
+            onChange={handleChange}
+            helperText="Please select gender"
+            required
+          >
+            <MenuItem value="MALE">Male</MenuItem>
+            <MenuItem value="FEMALE">Female</MenuItem>
+          </TextField>
 
-            <Grid item xs={12}>
-              <Button
-                variant="contained"
-                type="submit"
-                fullWidth
-                disabled={loading}
-              >
-                {loading ? "Adding..." : "Add Doctor"}
-              </Button>
-            </Grid>
-          </Grid>
-        </form>
-      </Paper>
+          <Button
+            variant="contained"
+            type="submit"
+            fullWidth
+            disabled={loading}
+          >
+            {loading ? "Adding..." : "Add Doctor"}
+          </Button>
+        </Box>
+      </Box>
     </Container>
   );
 };
