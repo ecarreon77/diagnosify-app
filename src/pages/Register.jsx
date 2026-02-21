@@ -1,5 +1,13 @@
 import { useState } from "react";
-import { Container, TextField, Button, Box, Typography } from "@mui/material";
+import {
+  Container,
+  TextField,
+  Button,
+  Box,
+  Typography,
+  Grid,
+  MenuItem,
+} from "@mui/material";
 import { registerUser } from "../api/authApi";
 import { useSnackbar } from "../context/SnackbarContext";
 
@@ -78,8 +86,28 @@ export default function Register() {
             label="Contact Number"
             onChange={handleChange}
           />
-          <TextField name="birthDate" type="date" onChange={handleChange} />
-          <TextField name="sex" label="Sex" onChange={handleChange} />
+          <TextField
+            fullWidth
+            label="Birth Date"
+            name="birthDate"
+            type="date"
+            InputLabelProps={{ shrink: true }}
+            onChange={handleChange}
+            helperText="Please select date"
+            required
+          />
+          <TextField
+            select
+            fullWidth
+            label="Gender"
+            name="sex"
+            onChange={handleChange}
+            helperText="Please select gender"
+            required
+          >
+            <MenuItem value="MALE">Male</MenuItem>
+            <MenuItem value="FEMALE">Female</MenuItem>
+          </TextField>
 
           <Button variant="contained" type="submit" fullWidth>
             Register

@@ -128,6 +128,7 @@ const AdminDashboard = () => {
                 InputLabelProps={{ shrink: true }}
                 value={form.birthDate}
                 onChange={handleChange}
+                helperText="Please select date"
                 required
               />
             </Grid>
