@@ -9,7 +9,7 @@ import {
   MenuItem,
 } from "@mui/material";
 import { useSnackbar } from "../../context/SnackbarContext";
-import { registerUser } from "../../api/authApi";
+import { registerDoctorUser } from "../../api/registerDoctor";
 
 const AdminDashboard = () => {
   const { showSnackbar } = useSnackbar();
@@ -39,7 +39,7 @@ const AdminDashboard = () => {
     try {
       setLoading(true);
 
-      await registerUser({
+      await registerDoctorUser({
         ...form,
         role: "DOCTOR",
         password: "password123",
