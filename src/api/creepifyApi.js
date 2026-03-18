@@ -2,7 +2,7 @@ import axios from "axios";
 import { getLoadingSetter } from "./loadingBridge";
 
 const creepifyApi = axios.create({
-  baseURL: "https://creepify-production.up.railway.app",
+  baseURL: "https://creepify.onrender.com",
   headers: { "Content-Type": "application/json" },
 });
 
