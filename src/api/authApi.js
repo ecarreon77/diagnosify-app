@@ -2,7 +2,7 @@ import axios from "axios";
 import { getLoadingSetter } from "./loadingBridge";
 
 const authApi = axios.create({
-  baseURL: "https://identity-production-b8cf.up.railway.app",
+  baseURL: "https://identity-mao8.onrender.com",
   headers: { "Content-Type": "application/json" },
 });
 

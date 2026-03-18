@@ -2,7 +2,7 @@ import axios from "axios";
 import { getLoadingSetter } from "./loadingBridge";
 
 const diagnosifyApi = axios.create({
-  baseURL: "https://diagnosify-production.up.railway.app",
+  baseURL: "https://diagnosify-158g.onrender.com",
   headers: { "Content-Type": "application/json" },
 });
 
