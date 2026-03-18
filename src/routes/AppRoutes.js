@@ -1,14 +1,16 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Login from "../pages/Login";
-import Register from "../pages/Register";
-import Diagnosify from "../pages/Diagnosify";
+import Login from "../pages/auth/Login";
+import Register from "../pages/auth/Register";
+import Diagnosify from "../pages/diagnosify/Diagnosify";
 import Navbar from "../components/Navbar";
 
 import ProtectedRoute from "./ProtectedRoute";
 import PublicRoute from "./PublicRoute";
-import ChangePassword from "../pages/ChangePassword";
+import ChangePassword from "../pages/auth/ChangePassword";
 import AdminDashboard from "../pages/admin/AdminDashboard";
 import DoctorDashboard from "../pages/doctor/DoctorDashboard";
+import UserDashboard from "../pages/UserDashboard";
+import CreepifyViewStories from "../pages/creepify/CreepifyViewStories";
 
 export default function AppRoutes() {
   return (
@@ -42,6 +44,24 @@ export default function AppRoutes() {
           element={
             <ProtectedRoute allowedRoles={["USER"]}>
               <Diagnosify />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/user-dashboard"
+          element={
+            <ProtectedRoute allowedRoles={["USER"]}>
+              <UserDashboard />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/creepify"
+          element={
+            <ProtectedRoute allowedRoles={["USER"]}>
+              <CreepifyViewStories />
             </ProtectedRoute>
           }
         />

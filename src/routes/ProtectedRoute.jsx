@@ -13,7 +13,10 @@ export default function ProtectedRoute({ children, allowedRoles }) {
     // Redirect to correct dashboard instead of "/"
     if (role === "ADMIN") return <Navigate to="/admin-dashboard" replace />;
     if (role === "DOCTOR") return <Navigate to="/doctor-dashboard" replace />;
+    if (role === "USER") return <Navigate to="/user-dashboard" replace />;
     if (role === "USER") return <Navigate to="/diagnosify" replace />;
+    if (role === "USER") return <Navigate to="/creepify" replace />;
+    if (role === "USER") return <Navigate to="/creepify-send-story" replace />;
 
     return <Navigate to="/" replace />;
   }

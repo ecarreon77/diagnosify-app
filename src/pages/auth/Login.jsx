@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Container, TextField, Button, Box, Typography } from "@mui/material";
-import { loginUser } from "../api/authApi";
+import { loginUser } from "../../api/authApi";
 import { useNavigate } from "react-router-dom";
-import Loading from "../components/Loading";
-import { useSnackbar } from "../context/SnackbarContext";
+import Loading from "../../components/Loading";
+import { useSnackbar } from "../../context/SnackbarContext";
 
 export default function Login() {
   const [form, setForm] = useState({ email: "", password: "" });
@@ -33,7 +33,7 @@ export default function Login() {
 
       showSnackbar("Login successful 🎉", "success");
 
-      navigate("/diagnosify");
+      navigate("/user-dashboard");
     } catch (err) {
       const status = err.response?.status;
       const backendMessage = err.response?.data?.message;

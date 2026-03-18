@@ -12,10 +12,10 @@ import {
   Alert,
   Stack,
 } from "@mui/material";
-import { checkHealth } from "../api/diagnosifyApi";
-import Loading from "../components/Loading";
-import { useSnackbar } from "../context/SnackbarContext";
-import { getUserRole } from "../api/auth";
+import { checkHealth } from "../../api/diagnosifyApi";
+import Loading from "../../components/Loading";
+import { useSnackbar } from "../../context/SnackbarContext";
+import { getUserRole } from "../../api/auth";
 
 export default function Diagnosify() {
   const [symptomsInput, setSymptomsInput] = useState("");

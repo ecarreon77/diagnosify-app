@@ -1,12 +1,13 @@
 import axios from "axios";
 import { getLoadingSetter } from "./loadingBridge";
 
-const diagnosifyApi = axios.create({
-  baseURL: "https://diagnosify-production.up.railway.app",
+const registerDoctor = axios.create({
+  baseURL: "https://identity-mao8.onrender.com",
   headers: { "Content-Type": "application/json" },
 });
 
-diagnosifyApi.interceptors.request.use((config) => {
+// Attach token
+registerDoctor.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
   if (token) config.headers.Authorization = `Bearer ${token}`;
 
@@ -16,7 +17,7 @@ diagnosifyApi.interceptors.request.use((config) => {
   return config;
 });
 
-diagnosifyApi.interceptors.response.use(
+registerDoctor.interceptors.response.use(
   (res) => {
     const setLoading = getLoadingSetter();
     if (setLoading) setLoading(false);
@@ -29,7 +30,7 @@ diagnosifyApi.interceptors.response.use(
   },
 );
 
-export const checkHealth = (data) =>
-  diagnosifyApi.post("/api/health/check", data);
+export const registerDoctorUser = (data) =>
+  registerDoctor.post("/admin/register-doctor", data);
 
-export default diagnosifyApi;
+export default registerDoctor;

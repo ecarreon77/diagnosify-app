@@ -11,8 +11,8 @@ import {
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
-import { changePassword } from "../api/authApi";
-import { useSnackbar } from "../context/SnackbarContext";
+import { changePassword } from "../../api/authApi";
+import { useSnackbar } from "../../context/SnackbarContext";
 
 export default function ChangePassword() {
   const navigate = useNavigate();
