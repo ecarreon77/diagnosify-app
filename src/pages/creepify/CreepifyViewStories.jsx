@@ -29,11 +29,11 @@ export default function CreepifyViewStories() {
         const data = await fetchAllStories(); // Fetch the stories from API
 
         // Check the data structure, assuming the stories are under data.data
-        console.log("Fetched stories:", data.data);
+        console.log("Fetched stories:", data.data.content);
 
         // Set the stories array using data.data
-        if (Array.isArray(data.data)) {
-          setStories(data.data); // If it's an array, set it to state
+        if (Array.isArray(data.data.content)) {
+          setStories(data.data.content); // If it's an array, set it to state
         } else {
           throw new Error("Invalid data format");
         }
