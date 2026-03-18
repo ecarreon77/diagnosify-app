@@ -1,12 +1,12 @@
 import axios from "axios";
 import { getLoadingSetter } from "./loadingBridge";
 
-const diagnosifyApi = axios.create({
-  baseURL: "https://diagnosify-production.up.railway.app",
+const creepifyApi = axios.create({
+  baseURL: "https://creepify-production.up.railway.app",
   headers: { "Content-Type": "application/json" },
 });
 
-diagnosifyApi.interceptors.request.use((config) => {
+creepifyApi.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
   if (token) config.headers.Authorization = `Bearer ${token}`;
 
@@ -16,7 +16,7 @@ diagnosifyApi.interceptors.request.use((config) => {
   return config;
 });
 
-diagnosifyApi.interceptors.response.use(
+creepifyApi.interceptors.response.use(
   (res) => {
     const setLoading = getLoadingSetter();
     if (setLoading) setLoading(false);
@@ -29,7 +29,6 @@ diagnosifyApi.interceptors.response.use(
   },
 );
 
-export const checkHealth = (data) =>
-  diagnosifyApi.post("/api/health/check", data);
+export const fetchAllStories = () => creepifyApi.get("/api/story/all-stories");
 
-export default diagnosifyApi;
+export default creepifyApi;

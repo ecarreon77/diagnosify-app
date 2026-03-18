@@ -4,7 +4,7 @@ export default function PublicRoute({ children }) {
   const token = localStorage.getItem("token");
 
   if (token) {
-    return <Navigate to="/diagnosify" replace />;
+    return <Navigate to="/user-dashboard" replace />;
   }
 
   return children;

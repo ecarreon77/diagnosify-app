@@ -1,12 +1,12 @@
 import { useState } from "react";
 import {
   Container,
-  Paper,
   Typography,
   TextField,
   Button,
-  Grid,
   MenuItem,
+  Paper,
+  Grid,
 } from "@mui/material";
 import { useSnackbar } from "../../context/SnackbarContext";
 import { registerUser } from "../../api/authApi";

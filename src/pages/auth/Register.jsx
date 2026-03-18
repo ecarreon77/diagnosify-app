@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Container, TextField, Button, Box, Typography } from "@mui/material";
-import { registerUser } from "../api/authApi";
-import { useSnackbar } from "../context/SnackbarContext";
+import { registerUser } from "../../api/authApi";
+import { useSnackbar } from "../../context/SnackbarContext";
 
 export default function Register() {
   const [form, setForm] = useState({
