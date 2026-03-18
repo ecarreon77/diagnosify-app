@@ -5,6 +5,8 @@ import {
   TextField,
   Button,
   MenuItem,
+  Paper,
+  Grid,
 } from "@mui/material";
 import { useSnackbar } from "../../context/SnackbarContext";
 import { registerUser } from "../../api/authApi";
