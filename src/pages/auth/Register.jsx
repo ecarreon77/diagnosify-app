@@ -1,7 +1,18 @@
 import { useState } from "react";
-import { Container, TextField, Button, Box, Typography } from "@mui/material";
+import {
+  Container,
+  TextField,
+  Button,
+  Box,
+  Typography,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+} from "@mui/material";
 import { registerUser } from "../../api/authApi";
 import { useSnackbar } from "../../context/SnackbarContext";
+import { useNavigate } from "react-router-dom";
 
 export default function Register() {
   const [form, setForm] = useState({
@@ -15,6 +26,7 @@ export default function Register() {
   });
 
   const { showSnackbar } = useSnackbar();
+  const navigate = useNavigate(); // Initialize useNavigate
 
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -24,6 +36,7 @@ export default function Register() {
     try {
       await registerUser(form);
       showSnackbar("Registered Successfully 🎉", "success");
+      navigate("/");
     } catch (err) {
       const status = err.response?.status;
       const backendMessage = err.response?.data?.message;
@@ -79,7 +92,20 @@ export default function Register() {
             onChange={handleChange}
           />
           <TextField name="birthDate" type="date" onChange={handleChange} />
-          <TextField name="sex" label="Sex" onChange={handleChange} />
+          {/* Sex Field - Dropdown Menu */}
+          <FormControl fullWidth>
+            <InputLabel>Sex</InputLabel>
+            <Select
+              name="sex"
+              value={form.sex || ""} // make sure to handle initial value if it's undefined
+              onChange={handleChange}
+              label="Sex"
+              required
+            >
+              <MenuItem value="Male">Male</MenuItem>
+              <MenuItem value="Female">Female</MenuItem>
+            </Select>
+          </FormControl>
 
           <Button variant="contained" type="submit" fullWidth>
             Register
