@@ -11,6 +11,7 @@ import AdminDashboard from "../pages/admin/AdminDashboard";
 import DoctorDashboard from "../pages/doctor/DoctorDashboard";
 import UserDashboard from "../pages/UserDashboard";
 import CreepifyViewStories from "../pages/creepify/CreepifyViewStories";
+import CreepifySendStory from "../pages/creepify/CreepifySendStory";
 
 export default function AppRoutes() {
   return (
@@ -62,6 +63,15 @@ export default function AppRoutes() {
           element={
             <ProtectedRoute allowedRoles={["USER"]}>
               <CreepifyViewStories />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/creepify-send-story"
+          element={
+            <ProtectedRoute allowedRoles={["USER"]}>
+              <CreepifySendStory />
             </ProtectedRoute>
           }
         />

@@ -198,7 +198,7 @@ export default function Navbar() {
 
             <ListItem
               button
-              onClick={() => navigate("/about")}
+              onClick={() => navigate("/creepify-send-story")}
               sx={{ "&:hover": { backgroundColor: "#2d3748" } }}
             >
               <ListItemIcon sx={{ color: "#fff" }}>
