@@ -6,7 +6,7 @@ import Loading from "../../components/Loading";
 import { useSnackbar } from "../../context/SnackbarContext";
 
 export default function Login() {
-  const [form, setForm] = useState({ email: "", password: "" });
+  const [form, setForm] = useState({ username: "", password: "" });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -20,8 +20,8 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!form.email || !form.password) {
-      showSnackbar("Email and password are required", "warning");
+    if (!form.username || !form.password) {
+      showSnackbar("Username and password are required", "warning");
       return;
     }
 
@@ -69,8 +69,8 @@ export default function Login() {
             sx={{ display: "grid", gap: 2, mt: 2 }}
           >
             <TextField
-              name="email"
-              label="Email"
+              name="username"
+              label="Username"
               onChange={handleChange}
               required
               error={!!error}
