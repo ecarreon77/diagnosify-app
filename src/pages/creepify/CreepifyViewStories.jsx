@@ -121,13 +121,16 @@ export default function CreepifyViewStories() {
                     </Typography>
                     <Typography
                       variant="body2"
-                      sx={{ color: "text.secondary" }}
+                      sx={{ color: "text.secondary", ml: "5px", mr: "5px" }}
                     >
                       {story.body}
                     </Typography>
                     <Typography
                       variant="body2"
-                      sx={{ color: "text.secondary", mt: "15px" }}
+                      sx={{
+                        color: "text.secondary",
+                        mt: "15px",
+                      }}
                     >
                       Genre: {story.genre}
                     </Typography>
