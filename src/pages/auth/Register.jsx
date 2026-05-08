@@ -87,18 +87,26 @@ export default function Register() {
             name="firstName"
             label="First Name"
             onChange={handleChange}
+            required
           />
           <TextField
             name="lastName"
             label="Last Name"
             onChange={handleChange}
+            required
           />
           <TextField
             name="contactNumber"
             label="Contact Number"
             onChange={handleChange}
+            required
           />
-          <TextField name="birthDate" type="date" onChange={handleChange} />
+          <TextField
+            name="birthDate"
+            type="date"
+            onChange={handleChange}
+            required
+          />
           {/* Sex Field - Dropdown Menu */}
           <FormControl fullWidth>
             <InputLabel>Sex</InputLabel>
