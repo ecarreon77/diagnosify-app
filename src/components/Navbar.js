@@ -81,7 +81,13 @@ export default function Navbar() {
       {loading && <Loading />}
 
       {/* Navbar */}
-      <AppBar position="static">
+      <AppBar
+        position="sticky"
+        sx={{
+          top: 8,
+          zIndex: (theme) => theme.zIndex.drawer + 1,
+        }}
+      >
         <Toolbar>
           <IconButton
             edge="start"
