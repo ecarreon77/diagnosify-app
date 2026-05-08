@@ -116,12 +116,22 @@ export default function CreepifyViewStories() {
                     />
                   )}
                   <CardContent sx={{ width: "100%" }}>
-                    <Typography gutterBottom variant="h5" component="div">
+                    <Typography
+                      gutterBottom
+                      variant="h5"
+                      component="div"
+                      sx={{ fontWeight: "bold" }}
+                    >
                       {story.title}
                     </Typography>
                     <Typography
                       variant="body2"
-                      sx={{ color: "text.secondary", ml: "15px", mr: "5px" }}
+                      sx={{
+                        color: "text.secondary",
+                        textAlign: "left",
+                        mr: "25px",
+                        whiteSpace: "pre-line",
+                      }}
                     >
                       {story.body}
                     </Typography>
@@ -130,13 +140,14 @@ export default function CreepifyViewStories() {
                       sx={{
                         color: "text.secondary",
                         mt: "15px",
+                        fontWeight: "bold",
                       }}
                     >
                       Genre: {story.genre}
                     </Typography>
                     <Typography
                       variant="body2"
-                      sx={{ color: "text.secondary" }}
+                      sx={{ color: "text.secondary", fontWeight: "bold" }}
                     >
                       Sender: {story.alias}
                     </Typography>
