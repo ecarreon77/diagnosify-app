@@ -2,7 +2,7 @@ import axios from "axios";
 import { getLoadingSetter } from "./loadingBridge";
 
 const registerDoctor = axios.create({
-  baseURL: "https://identity-mao8.onrender.com",
+  baseURL: "https://api-gateway-wtx6.onrender.com",
   headers: { "Content-Type": "application/json" },
 });
 
