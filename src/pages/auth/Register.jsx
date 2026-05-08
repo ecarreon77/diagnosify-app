@@ -17,6 +17,7 @@ import { useNavigate } from "react-router-dom";
 export default function Register() {
   const [form, setForm] = useState({
     email: "",
+    username: "",
     password: "",
     firstName: "",
     lastName: "",
@@ -66,6 +67,12 @@ export default function Register() {
           <TextField
             name="email"
             label="Email"
+            onChange={handleChange}
+            required
+          />
+          <TextField
+            name="username"
+            label="Username"
             onChange={handleChange}
             required
           />
